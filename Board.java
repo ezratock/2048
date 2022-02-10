@@ -5,6 +5,7 @@ import java.util.Random;
 public class Board {
     private int[][] board;
     private static Random rand = new Random();
+    private int moves = 0;
 
     public Board() {
         this.board = board = new int[4][4];
@@ -57,6 +58,10 @@ public class Board {
         }
     }
 
+    public void printStats(){
+        System.out.printf("Highest number: %d\nMoves: %d\n", getMax(), moves);
+    }
+
     public boolean move(int x, int y) {
         boolean returnVar = false;
         //starting pos at the far-side most row/col
@@ -107,5 +112,19 @@ public class Board {
         }
 
         return returnVar;
+    }
+
+    public void incrementMoves() {
+        moves ++;
+    }
+
+    public int getMax() {
+        int max = 0;
+        for (int[] i : board) {
+            for (int j : i) {
+                max = Math.max(max, j);
+            }
+        }
+        return max;
     }
 }
